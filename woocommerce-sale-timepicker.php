@@ -27,12 +27,21 @@ class Woocommerce_Sale_Timepicker{
 		// Adding external files
 		$this->requiring();
 
+		// Register activation task
+		register_activation_hook( __FILE__, array( $this, 'activation' ) );
+
+		// Register deactivation task
+		register_deactivation_hook( __FILE__, array( $this, 'deactivation' ) );
+
 		// Enqueueing scripts
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
 
 		// Removing and adding meta box
 		add_action( 'add_meta_boxes', array( $this, 'remove_meta_boxes' ), 40 );
 		add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ), 50 );
+
+		// Refresh scheduled sales
+		add_action( 'woocommerce_scheduled_sales_micro', 'wc_scheduled_sales' );
 	}
 
 	/**
@@ -40,6 +49,41 @@ class Woocommerce_Sale_Timepicker{
 	 */
 	function requiring(){
 		require_once( $this->plugin_dir . '/includes/wc-sl-meta-box-product-data.php' );
+	}
+
+	/**
+	 * Register new interval
+	 * 
+	 * @return array of modified schedule
+	 */
+	function cron_five_minutes( $schedule ){
+		$schedules['every5minutes'] = array(
+			'interval' => 300,
+			'display' => __( 'Every 5 minutes', 'woocommerce-sale-timepicker' )
+		);
+
+		return $schedules;
+	}
+
+	/**
+	 * Activation task
+	 * 
+	 * @return void
+	 */
+	function activation(){
+		if( !wp_next_scheduled( 'woocommerce_scheduled_sales_micro' ) ){
+			wp_schedule_event( current_time( 'timestamp', wp_timezone_override_offset() ), 'every5minutes', 'woocommerce_scheduled_sales_micro' );
+		}
+
+	}
+
+	/**
+	 * Deactivation task
+	 * 
+	 * @return void
+	 */
+	function deactivation(){
+		wp_clear_scheduled_hook( 'woocommerce_scheduled_sales_micro' );
 	}
 
 	/**
