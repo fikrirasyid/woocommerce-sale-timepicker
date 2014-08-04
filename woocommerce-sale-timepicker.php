@@ -1,7 +1,6 @@
 <?php
 /**
  * Plugin Name: WooCommerce Sale Timepicker
- * Plugin URI: http://www.woothemes.com/woocommerce/
  * Description: Replacing datepicker on product dashboard with more precise timepicker
  * Version: 0.1
  * Author: Fikri Rasyid
