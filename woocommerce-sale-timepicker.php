@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: WooCommerce Sale Timepicker
- * Description: Replacing datepicker on product dashboard with more precise timepicker
+ * Description: Replacing datepicker on WooCommerce product dashboard with more timepicker (So the sale can be scheduled in minute basis)
  * Version: 0.1
  * Author: Fikri Rasyid
  * Author URI: http://fikrirasyid.com
