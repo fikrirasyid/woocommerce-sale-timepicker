@@ -48,7 +48,7 @@ class Woocommerce_Sale_Timepicker{
 	 * Requiring external files file(s)
 	 */
 	function requiring(){
-		require_once( $this->plugin_dir . '/includes/wc-sl-meta-box-product-data.php' );
+		require_once( $this->plugin_dir . '/includes/wc-st-meta-box-product-data.php' );
 	}
 
 	/**
@@ -118,7 +118,7 @@ class Woocommerce_Sale_Timepicker{
 	 * @return void
 	 */
 	function add_meta_boxes(){
-		add_meta_box( 'woocommerce-product-data', __( 'Product Data', 'woocommerce' ), 'WC_SL_Meta_Box_Product_Data::output', 'product', 'normal', 'high' );		
+		add_meta_box( 'woocommerce-product-data', __( 'Product Data', 'woocommerce' ), 'WC_ST_Meta_Box_Product_Data::output', 'product', 'normal', 'high' );		
 	}	
 }
 new Woocommerce_Sale_Timepicker;

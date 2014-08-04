@@ -9,7 +9,7 @@
  * @package 	WooCommerce/Admin/Meta Boxes
  * @version     2.1.0
  */
-class WC_SL_Meta_Box_Product_Data extends WC_Meta_Box_Product_Data{
+class WC_ST_Meta_Box_Product_Data extends WC_Meta_Box_Product_Data{
 
 	/**
 	 * Output the metabox
