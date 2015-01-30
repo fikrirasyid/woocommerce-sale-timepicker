@@ -26,6 +26,9 @@ class Woocommerce_Sale_Timepicker{
 		// Adding external files
 		$this->requiring();
 
+		// Register five minutes interval cron
+		add_filter( 'cron_schedules', array( $this, 'cron_five_minutes' ) );
+
 		// Register activation task
 		register_activation_hook( __FILE__, array( $this, 'activation' ) );
 
